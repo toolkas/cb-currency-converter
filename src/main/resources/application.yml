@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/db.changelog-master.xml
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=false;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DATABASE_TO_UPPER=true;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: true
+
+logging:
+  config: classpath:log4j2.xml
+
+cc:
+  cb:
+    url: http://www.cbr.ru/scripts/XML_daily.asp

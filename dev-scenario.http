@@ -1,0 +1,8 @@
+POST http://localhost:8081/api/convert
+Content-Type: application/json
+
+{
+  "from": "USD",
+  "to": "EUR",
+  "amount": 1
+}

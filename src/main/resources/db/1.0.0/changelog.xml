@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.7.xsd">
+
+    <changeSet id="create-currency-table" author="d.rogov">
+        <createTable tableName="currency">
+            <column name="ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="char_code" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="num_code" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nominal" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cb_id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="published_at" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
