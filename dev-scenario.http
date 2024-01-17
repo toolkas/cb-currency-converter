@@ -1,4 +1,5 @@
-POST http://localhost:8081/api/convert
+### Convert
+POST http://localhost:8081/currency/convert
 Content-Type: application/json
 
 {
@@ -6,3 +7,40 @@ Content-Type: application/json
   "to": "EUR",
   "amount": 1
 }
+
+### Find All
+GET http://localhost:8081/currency
+
+### Create
+POST http://localhost:8081/currency
+Content-Type: application/json
+
+{
+  "name": "Валюта республики ШКИД",
+  "charCode": "SHH",
+  "numCode": 111,
+  "nominal": 1000,
+  "value": 10,
+  "cbId": "R01000"
+}
+
+### Find by id
+GET http://localhost:8081/currency/b52d8b7c-4b1e-4210-b5ec-a23b8cd7f204
+
+### Update
+PUT http://localhost:8081/currency/b52d8b7c-4b1e-4210-b5ec-a23b8cd7f204
+Content-Type: application/json
+
+{
+  "id": "b52d8b7c-4b1e-4210-b5ec-a23b8cd7f204",
+  "name": "Валюта республики ШКИД",
+  "charCode": "SHH",
+  "numCode": 111,
+  "nominal": 2000,
+  "value": 1E+1,
+  "cbId": "R01000",
+  "published": "18-01-2024"
+}
+
+### Delete
+DELETE http://localhost:8081/currency/b52d8b7c-4b1e-4210-b5ec-a23b8cd7f204

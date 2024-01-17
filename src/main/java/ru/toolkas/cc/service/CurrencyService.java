@@ -1,6 +1,7 @@
 package ru.toolkas.cc.service;
 
 import jakarta.annotation.PostConstruct;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +14,15 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class ConversionService {
+public class CurrencyService {
   private static final String VAL_CURS_DATE_FORMAT = "dd.MM.yyyy";
   private final CbService cbService;
   private final CurrencyRepository currencyRepository;
@@ -30,7 +33,7 @@ public class ConversionService {
     ValCurs valCurs = cbService.fetch(LocalDate.now());
     LocalDate published = LocalDate.parse(valCurs.getDate(), DateTimeFormatter.ofPattern(VAL_CURS_DATE_FORMAT));
 
-    for (Valute valute: valCurs.getValutes()) {
+    for (Valute valute : valCurs.getValutes()) {
       Currency currency = new Currency();
       currency.setId(UUID.randomUUID());
       currency.setCbId(valute.getId());
@@ -57,5 +60,33 @@ public class ConversionService {
             .divide(to.getValue().multiply(BigDecimal.valueOf(from.getNominal())),
                     MathContext.DECIMAL128
             );
+  }
+
+  public Currency create(@NonNull Currency currency) {
+    currency.setId(UUID.randomUUID());
+    currency.setNew(true);
+    currency.setPublished(LocalDate.now());
+
+    return currencyRepository.save(currency);
+  }
+
+  public Currency update(@NonNull Currency currency) {
+    return currencyRepository.save(currency);
+  }
+
+  public void deleteById(@NonNull UUID id) {
+    currencyRepository.deleteById(id);
+  }
+
+  public Optional<Currency> findById(@NonNull UUID id) {
+    return currencyRepository.findById(id);
+  }
+
+  public List<Currency> findAll() {
+    List<Currency> list = new ArrayList<>();
+    for (Currency currency : currencyRepository.findAll()) {
+      list.add(currency);
+    }
+    return list;
   }
 }
