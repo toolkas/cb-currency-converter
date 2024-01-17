@@ -6,10 +6,10 @@ spring:
     enabled: true
     change-log: classpath:/db/db.changelog-master.xml
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=false;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DATABASE_TO_UPPER=true;
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: sa
+    url: jdbc:postgresql://127.0.0.1:5432/cc
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1
   h2:
     console:
       enabled: true

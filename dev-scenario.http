@@ -44,3 +44,30 @@ Content-Type: application/json
 
 ### Delete
 DELETE http://localhost:8081/currency/b52d8b7c-4b1e-4210-b5ec-a23b8cd7f204
+
+
+### Create EUR
+POST http://localhost:8081/currency
+Content-Type: application/json
+
+{
+  "name": "Евро",
+  "charCode": "EUR",
+  "numCode": 978,
+  "nominal": 1,
+  "value": 96.0531,
+  "cbId": "R01239"
+}
+
+### Create USD
+POST http://localhost:8081/currency
+Content-Type: application/json
+
+{
+  "name": "Евро",
+  "charCode": "USD",
+  "numCode": 840,
+  "nominal": 1,
+  "value": 88.3540,
+  "cbId": "R01235"
+}
