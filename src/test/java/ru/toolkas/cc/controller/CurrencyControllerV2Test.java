@@ -1,6 +1,7 @@
 package ru.toolkas.cc.controller;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -11,7 +12,7 @@ import ru.toolkas.cc.mapper.CurrencyMapperImpl;
 import ru.toolkas.cc.repository.CurrencyRepository;
 import ru.toolkas.cc.service.CurrencyService;
 
-import static java.util.Arrays.asList;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -37,5 +38,8 @@ class CurrencyControllerV2Test {
                     .content("{\"from\": \"USD\",\"to\": \"EUR\",\"amount\": 1}"))
             .andExpect(status().isOk())
             .andExpect(content().string("0.9198453771924071164803634656247430"));
+
+    Mockito.verify(currencyRepository).findByCharCode("USD");
+    Mockito.verify(currencyRepository).findByCharCode("EUR");
   }
 }
