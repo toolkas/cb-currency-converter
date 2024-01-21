@@ -10,15 +10,6 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 1
-  h2:
-    console:
-      enabled: true
-      settings:
-        trace: true
 
 logging:
   config: classpath:log4j2.xml
-
-cc:
-  cb:
-    url: http://www.cbr.ru/scripts/XML_daily.asp
